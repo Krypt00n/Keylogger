@@ -34,12 +34,12 @@ def sendmail():
 
 def time_verify():
 
-    hora_inicial = datetime.datetime.now() + datetime.timedelta(minutes=1)
+    hora_inicial = datetime.datetime.now() + datetime.timedelta(minutes=25)
 
     while True:
         agora = datetime.datetime.now()
         if agora >= hora_inicial:
             sendmail()
-            hora_inicial = agora + datetime.timedelta(minutes=1)
+            hora_inicial = agora + datetime.timedelta(minutes=25)
         time.sleep(60)  # Espera 1 minuto antes de verificar novamente
 
